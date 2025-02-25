@@ -1,0 +1,154 @@
+/* 전체 컨테이너 */
+.container {
+    padding: 1rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 제목 스타일 */
+.title {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+/* 질문 및 답변 영역 */
+.historySection {
+    width: 100%;
+    max-width: 800px;
+    height: 50vh;  /* 전체 높이의 50% 차지 */
+    overflow-y: auto;  /* 스크롤 가능하게 설정 */
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+/* 각 질문과 답변 블록 */
+.questionBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* 질문 텍스트 스타일 */
+.question {
+    font-weight: 600;
+    background-color: #eff2fa;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 나의 답변 및 피드백 스타일 */
+.answerContainer {
+    margin-top: 0.5rem;
+    padding: 1rem;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 현재 질문 스타일 */
+.currentQuestion {
+    font-style: italic;
+    color: #555;
+}
+
+/* 텍스트 입력 영역 */
+.textarea {
+    border: 1px solid #ddd;
+    padding: 0.5rem;
+    height: 10vh;
+    margin-top: 1rem;
+    border-radius: 8px;
+    resize: vertical;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 800px;
+}
+
+/* 버튼 영역 */
+.buttonarea {
+    align-self: flex-end;
+    margin-top: 1rem;
+}
+
+/* 버튼 스타일 */
+.button {
+    position: relative;
+    overflow: hidden;
+    height: 3rem;
+    padding: 0 2rem;
+    border-radius: 1.5rem;
+    background: #464c71;
+    background-size: 400%;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    margin-right: 200px;
+}
+
+.button:hover::before {
+    transform: scaleX(1);
+}
+
+.button_content {
+    position: relative;
+    z-index: 1;
+}
+
+.button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+    width: 100%;
+    height: inherit;
+    border-radius: inherit;
+    background: linear-gradient(
+      82.3deg,
+      rgb(141, 157, 228) 10.8%,
+      rgb(84, 111, 178) 94.3%
+    );
+    transition: all 0.475s;
+}
+
+/* 로딩 메시지 스타일 */
+.loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    font-size: 1rem;
+    color: #555;
+}
+
+/* 스피너 애니메이션 */
+.spinner {
+    width: 30px;
+    height: 30px;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #7692b0;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 0.5rem;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+

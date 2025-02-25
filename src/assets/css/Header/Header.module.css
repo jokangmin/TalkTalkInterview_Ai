@@ -1,0 +1,60 @@
+/* 헤더 전체 스타일 */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 0;
+  background-color: rgba(246, 246, 246, 0.5);
+  color: rgb(0, 0, 0);
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+  
+/* 네비게이션 바 스타일 */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+  
+/* 메뉴 항목 스타일 */
+.menu {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  flex-grow: 1;
+  margin-left: 60px;
+}
+  
+/* 각 메뉴 항목 스타일 */
+.menu_item {
+  margin: 0 15px;
+}
+  
+/* 메뉴 항목 링크 스타일 */
+.menu_item a {
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+  
+.menu_item a:hover {
+  color: #9fb4e7;
+}
+
+.logo img {
+  height: 60px;
+  width: 60px;
+}
+
+.logo:hover{
+  cursor:pointer;
+}
+
+  
