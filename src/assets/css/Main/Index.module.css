@@ -119,26 +119,25 @@ html, body {
 
 .bgWrapper3 img{
     text-align: right;
-    width: 590px;
-    height: 950px;
+    width: 550px;
+    height: 890px;
+    margin-top: 75px;
 }
 
 .phone{
     position: absolute;
-    background-color: rgb(21, 48, 88);
-    width: 274px;
-    height: 500px;
+    background-image: url(/src/assets/image/phone_image.png);
+    background-size: cover;
+    background-position-y: -50px;
+    width: 255px;
+    height: 472px;
     z-index: 800;
-    margin-right: 126px;
-    margin-top: 60px;
-    overflow-y: auto;
+    margin-right: 119px;
+    margin-top: 113px;
 }
 
-.phone_content {
-    height: 800px;
-    padding: 20px;
-    color: white;
-}
+
+
 
 /* --------------------------- */
 

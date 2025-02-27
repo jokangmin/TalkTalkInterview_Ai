@@ -10,7 +10,7 @@
   z-index: 1000;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-  
+
 /* 네비게이션 바 스타일 */
 .navbar {
   display: flex;
@@ -18,7 +18,14 @@
   align-items: center;
   padding: 0 20px;
 }
-  
+
+/* 햄버거 메뉴 버튼 */
+.menu_toggle {
+  display: none;
+  font-size: 40px;
+  cursor: pointer;
+}
+
 /* 메뉴 항목 스타일 */
 .menu {
   list-style: none;
@@ -29,12 +36,12 @@
   flex-grow: 1;
   margin-left: 60px;
 }
-  
+
 /* 각 메뉴 항목 스타일 */
 .menu_item {
   margin: 0 15px;
 }
-  
+
 /* 메뉴 항목 링크 스타일 */
 .menu_item a {
   text-decoration: none;
@@ -43,18 +50,54 @@
   font-weight: bold;
   transition: color 0.3s ease;
 }
-  
+
 .menu_item a:hover {
   color: #9fb4e7;
 }
 
+/* 로고 스타일 */
 .logo img {
   height: 60px;
   width: 60px;
 }
 
-.logo:hover{
-  cursor:pointer;
+.logo:hover {
+  cursor: pointer;
 }
 
-  
+/* 반응형 스타일 */
+@media screen and (max-width: 768px) {
+  /* 햄버거 버튼 표시 */
+  .menu_toggle {
+    display: block;
+  }
+
+  /* 기본적으로 메뉴 숨김 */
+  .menu {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 74px;
+    left: -60px;
+    width: 100%;
+    background-color: rgba(246, 246, 246, 0.9);
+    text-align: center;
+    padding: 15px 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  /* 메뉴가 열렸을 때 표시 */
+  .menu.show {
+    display: flex;
+  }
+
+  .menu_item {
+    margin: 15px 0;
+  }
+
+  /* 로고 크기 축소 */
+  .logo img {
+    height: 50px;
+    width: 50px;
+  }
+}

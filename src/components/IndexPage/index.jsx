@@ -40,11 +40,12 @@ const index = () => {
                     <div className={styles.bgWrapper3} style={{opacity: Math.min(1, Math.max(0, (scrollY - 340) / 300))}}>
                         <img src={hand} alt="손 이미지" />
                         <div className={styles.phone}>
-                            <div className={styles.phone_content}>
-                                <p>안에 면접 채팅 앱 화면</p>
-                            </div>
                         </div>
                     </div>
+                    {/* <div className={styles.ai_description}>
+                        <h2>AI 면접이란?</h2>
+                        <p>AI 면접은 인공지능 기술을 활용하여<br />면접자의 역량을 평가하는 새로운 방식입니다.</p>
+                    </div> */}
                 </section>
                 <img className={styles.down_arrow} src={down_arrow} alt="스크롤 이미지" />
             </div>
