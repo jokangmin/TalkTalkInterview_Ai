@@ -36,17 +36,22 @@ const index = () => {
                         <p>Ai 면접 피드백을 통한<br/>실제 면접 대비</p>
                     </div>
                 </section>
-                <section className={styles.sec03}>
-                    <div className={styles.bgWrapper3} style={{opacity: Math.min(1, Math.max(0, (scrollY - 340) / 300))}}>
-                        <img src={hand} alt="손 이미지" />
-                        <div className={styles.phone}>
-                        </div>
-                    </div>
-                    {/* <div className={styles.ai_description}>
+                <section className={styles.sec03} style={{opacity: Math.min(1, Math.max(0, (scrollY - 340) / 300))}}>
+                    <div 
+                        className={`${styles.ai_description} ${scrollY > 340 ? styles.showAI : ''}`}
+                    >
                         <h2>AI 면접이란?</h2>
                         <p>AI 면접은 인공지능 기술을 활용하여<br />면접자의 역량을 평가하는 새로운 방식입니다.</p>
-                    </div> */}
+
+                        <h2>사용자 친화적인 시스템이란?</h2>
+                        <p>AI 면접 질문 저장 및 자신만의 면접 질문 관리를 통해<br />사용자만의 면접 질문을 만드세요.</p>
+                    </div>
+                    <div className={styles.bgWrapper3}>
+                        <img src={hand} alt="손 이미지" />
+                        <div className={styles.phone}></div>
+                    </div>
                 </section>
+
                 <img className={styles.down_arrow} src={down_arrow} alt="스크롤 이미지" />
             </div>
         </>
