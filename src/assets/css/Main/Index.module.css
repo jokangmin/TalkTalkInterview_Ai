@@ -95,7 +95,6 @@ html, body {
     color:rgb(43, 47, 51);
 }
 
-
 /* --------------------------- */
 /* 세 번째 섹션 */
 .sec03 {
@@ -107,7 +106,7 @@ html, body {
     z-index: 100;
 }
 
-.bgWrapper3{
+.bgWrapper3 {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
@@ -119,14 +118,13 @@ html, body {
     margin-right: 100px;
 }
 
-.bgWrapper3 img{
+.bgWrapper3 img {
     text-align: right;
     width: 550px;
-    height: 890px;
     margin-top: 75px;
 }
 
-.phone{
+.phone {
     position: absolute;
     background-image: url(/src/assets/image/phone_image.png);
     background-size: cover;
@@ -169,7 +167,6 @@ html, body {
     line-height: 1.5;
 }
 
-
 /* --------------------------- */
 
 /* --------------------------- */
@@ -195,3 +192,93 @@ html, body {
     }
 }
 
+/* 반응형 웹 디자인 적용 */
+@media (max-width: 1024px) {
+    .bgWrapper2{
+        display: block;
+    }
+
+    .bgWrapper2 img {
+        width: 600px;
+    }
+
+    .bgWrapper2 p {
+        font-size: 2rem;
+    }
+
+    .bgWrapper3{
+        margin-right: 0px;
+    }
+
+    .bgWrapper3 img {
+        width: 400px;
+    }
+
+    .ai_description {
+        width: 70%;
+        padding: 20px;
+        margin-left: 0px;
+    }
+}
+
+@media (max-width: 768px) {
+    .sec02 {
+        flex-direction: column;
+    }
+
+    .bgWrapper2 img {
+        width: 500px;
+    }
+
+    .bgWrapper2 p {
+        font-size: 1.8rem;
+    }
+
+    .sec03 {
+        flex-direction: column;
+        
+    }
+
+    .bgWrapper3 img {
+        width: 350px;
+        margin-left: 20%;
+    }
+
+    .ai_description {
+        width: 80%;
+    }
+}
+
+@media (max-width: 480px) {
+    .bgWrapper2 img {
+        width: 100%;
+    }
+
+    .bgWrapper2 p {
+        font-size: 1.7rem;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .ai_description {
+        width: 80%;
+        padding: 15px;
+    }
+
+    .ai_description h2 {
+        font-size: 1.5rem;
+    }
+
+    .ai_description p {
+        font-size: 1rem;
+    }
+
+    .phone {
+        background-position-y: -31px;
+        width: 160px;
+        height: 303px;
+        z-index: 800;
+        margin-right: -11px;
+        margin-top: 116px;
+    }
+}
