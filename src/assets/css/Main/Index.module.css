@@ -124,18 +124,6 @@ html, body {
     margin-top: 75px;
 }
 
-.phone {
-    position: absolute;
-    background-image: url(/src/assets/image/phone_image.png);
-    background-size: cover;
-    background-position-y: -50px;
-    width: 255px;
-    height: 472px;
-    z-index: 800;
-    margin-right: 119px;
-    margin-top: 113px;
-}
-
 .ai_description {
     width: 65%;
     padding: 30px;
@@ -167,7 +155,7 @@ html, body {
     line-height: 1.5;
 }
 
-/* --------------------------- */
+
 
 /* --------------------------- */
 /* 애니메이션 효과 */
@@ -192,11 +180,10 @@ html, body {
     }
 }
 
+/* --------------------------- */
 /* 반응형 웹 디자인 적용 */
 @media (max-width: 1024px) {
-    .bgWrapper2{
-        display: block;
-    }
+    
 
     .bgWrapper2 img {
         width: 600px;
@@ -212,6 +199,7 @@ html, body {
 
     .bgWrapper3 img {
         width: 400px;
+        margin-top: 200px;
     }
 
     .ai_description {
@@ -222,6 +210,8 @@ html, body {
 }
 
 @media (max-width: 768px) {
+    
+
     .sec02 {
         flex-direction: column;
     }
@@ -231,7 +221,7 @@ html, body {
     }
 
     .bgWrapper2 p {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
     }
 
     .sec03 {
@@ -239,17 +229,22 @@ html, body {
         
     }
 
-    .bgWrapper3 img {
-        width: 350px;
-        margin-left: 20%;
-    }
-
     .ai_description {
         width: 80%;
     }
+
+    .bgWrapper3 img {
+        width: 350px;
+        margin-left: 10%;
+        margin-top: 0px;
+    }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 650px) {
+    .bgWrapper2{
+        display: block;
+    }
+
     .bgWrapper2 img {
         width: 100%;
     }
@@ -273,12 +268,10 @@ html, body {
         font-size: 1rem;
     }
 
-    .phone {
-        background-position-y: -31px;
-        width: 160px;
-        height: 303px;
-        z-index: 800;
-        margin-right: -11px;
-        margin-top: 116px;
+    .bgWrapper3 img {
+        width: 350px;
+        margin-left: 20%;
+        margin-top: 75px;
     }
+
 }

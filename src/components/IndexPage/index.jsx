@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import logo_image from '../../assets/image/TALKTALKINTERVIEW_LOGO_remove.png';
 import interview from '../../assets/image/interview_remove.png';
 import down_arrow from '../../assets/image/down_arrow.png';
-import hand from '../../assets/image/hand.png';
+import hand from '../../assets/image/hand3.png';
 import {IndexContext} from '../../contexts/indexContext/IndexContext';
 import Header from '../Header/Header';
 import styles from '../../assets/css/Main/Index.module.css';
@@ -48,7 +48,6 @@ const index = () => {
                     </div>
                     <div className={styles.bgWrapper3}>
                         <img src={hand} alt="손 이미지" />
-                        <div className={styles.phone}></div>
                     </div>
                 </section>
 
