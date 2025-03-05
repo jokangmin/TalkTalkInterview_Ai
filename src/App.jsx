@@ -5,6 +5,10 @@ import IndexProvider from './contexts/indexContext/IndexContext';
 import InterviewProvider from './contexts/InterviewContext/InterviewContext';
 import HeaderProvider from './contexts/HeaderContext/HeaderContext';
 import HeaderPage from './components/Header/Header';
+import LoginProvider from './contexts/LoginContext/LoginContext';
+import LoginPage from './components/LoginPage/LoginMain';
+import SignUpProvider from './contexts/LoginContext/SignUpContext';
+import SignUpPage from './components/LoginPage/SignUpMain';
 
 function App() {
   return (
@@ -28,6 +32,26 @@ function App() {
               <InterviewProvider>
                 <InterviewMain />
               </InterviewProvider>
+            } 
+          />
+
+          {/* 로그인 페이지 */}
+          <Route 
+            path="/login" 
+            element={
+              <LoginProvider>
+                <LoginPage />
+              </LoginProvider>
+            } 
+          />
+
+          {/* 회원가입 페이지 */}
+          <Route 
+            path="/signUp" 
+            element={
+              <SignUpProvider>
+                <SignUpPage />
+              </SignUpProvider>
             } 
           />
 
