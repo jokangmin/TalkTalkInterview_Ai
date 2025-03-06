@@ -20,6 +20,7 @@ const SignUpMain = () => {
             handleEmailChange,
             handleSubmit} = useContext(SignUpContext);
 
+            
     return (
         <div className={styles.signup_main}>
             <Header />

@@ -16,10 +16,27 @@ const SignUpProvider = ({children}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // 회원가입 로직
-        console.log('회원가입 - ID:', id, 'Password:', password, 'Name:', name, 'Email:', email);
-        // 회원가입 완료 후 로그인 페이지로 이동
-        navigate('/login');
+        
+        if (!name.trim()) {
+            alert("이름을 입력하세요.");
+            return;
+        }
+        if (!email.trim()) {
+            alert("이메일을 입력하세요.");
+            return;
+        }
+        if (!id.trim()) {
+            alert("아이디를 입력하세요.");
+            return;
+        }
+        if (!password.trim()) {
+            alert("비밀번호를 입력하세요.");
+            return;
+        }
+
+        // 회원가입 처리 로직 (예: API 요청)
+        console.log("회원가입 성공!");
+        navigate('/'); // 예시: 회원가입 후 메인 페이지로 이동
     };
 
 
