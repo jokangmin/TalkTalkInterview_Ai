@@ -24,20 +24,30 @@ const SignUpProvider = ({children}) => {
             setUserIdError("아이디를 입력해주세요.");
             return;
         }
-
+    
         try {
-            const response = await axios.get(`${PATH.SERVER}/api/user/idCheck`, {params: {userId}});
-            if (response.status === 201) {
+            const response = await axios.get(`${PATH.SERVER}/api/user/idCheck`, {params: {user_id : userId}});
+            if (response.status === 200) {
                 setUserIdError("사용 가능한 아이디입니다.");
             }
         } catch (error) {
-            if (error.response.status === 409) {
-                setUserIdError("이미 사용 중인 아이디입니다.");
+            if (error.response) {
+                // error.response가 존재할 때
+                if (error.response.status === 409) {
+                    setUserIdError("이미 사용 중인 아이디입니다.");
+                } else {
+                    setUserIdError("아이디 중복 확인에 실패했습니다.");
+                }
+            } else if (error.request) {
+                // error.request가 존재할 때, 서버로부터 응답이 없었을 때
+                setUserIdError("서버와의 연결에 실패했습니다.");
             } else {
+                // 그 외 다른 오류가 발생했을 때
                 setUserIdError("아이디 중복 확인에 실패했습니다.");
             }
         }
-    }
+    };
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -47,7 +57,7 @@ const SignUpProvider = ({children}) => {
             return;
         }
 
-        if (userIdError === "이미 사용 중인 아이디입니다.") {
+        if (userIdError !== "사용 가능한 아이디입니다.") {
             alert("다른 아이디를 사용해주세요.");
             return;
         }
@@ -56,9 +66,9 @@ const SignUpProvider = ({children}) => {
         try {
             await axios.post(`${PATH.SERVER}/api/user/join`, {
                 userId: userId,
-                pwd: userPassword,
-                name: userName,
-                email: userEmail
+                user_password: userPassword,
+                user_name: userName,
+                user_email: userEmail
             });
             alert("회원가입 성공!");
             navigate('/');
