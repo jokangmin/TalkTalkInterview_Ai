@@ -9,57 +9,60 @@ import LoginProvider from './contexts/LoginContext/LoginContext';
 import LoginPage from './components/LoginPage/LoginMain';
 import SignUpProvider from './contexts/LoginContext/SignUpContext';
 import SignUpPage from './components/LoginPage/SignUpMain';
+import AuthProvider from './contexts/AuthContext';
 
 function App() {
   return (
-    <HeaderProvider>
-      <Router>
-        <Routes>
-          {/* 메인 페이지 */}
-          <Route 
-            path="/" 
-            element={
-              <IndexProvider>
-                <IndexPage />
-              </IndexProvider>
-            } 
-          />
+    <AuthProvider>
+      <HeaderProvider>
+        <Router>
+          <Routes>
+            {/* 메인 페이지 */}
+            <Route 
+              path="/" 
+              element={
+                <IndexProvider>
+                  <IndexPage />
+                </IndexProvider>
+              } 
+            />
 
-          {/* 면접 페이지 */}
-          <Route 
-            path="/interview" 
-            element={
-              <InterviewProvider>
-                <InterviewMain />
-              </InterviewProvider>
-            } 
-          />
+            {/* 면접 페이지 */}
+            <Route 
+              path="/interview" 
+              element={
+                <InterviewProvider>
+                  <InterviewMain />
+                </InterviewProvider>
+              } 
+            />
 
-          {/* 로그인 페이지 */}
-          <Route 
-            path="/login" 
-            element={
-              <LoginProvider>
-                <LoginPage />
-              </LoginProvider>
-            } 
-          />
+            {/* 로그인 페이지 */}
+            <Route 
+              path="/login" 
+              element={
+                <LoginProvider>
+                  <LoginPage />
+                </LoginProvider>
+              } 
+            />
 
-          {/* 회원가입 페이지 */}
-          <Route 
-            path="/signUp" 
-            element={
-              <SignUpProvider>
-                <SignUpPage />
-              </SignUpProvider>
-            } 
-          />
+            {/* 회원가입 페이지 */}
+            <Route 
+              path="/signUp" 
+              element={
+                <SignUpProvider>
+                  <SignUpPage />
+                </SignUpProvider>
+              } 
+            />
 
-          {/* 헤더 페이지 */}
-          <Route path="/header" element={<HeaderPage />} />
-        </Routes>
-      </Router>
-    </HeaderProvider>
+            {/* 헤더 페이지 */}
+            <Route path="/header" element={<HeaderPage />} />
+          </Routes>
+        </Router>
+      </HeaderProvider>
+    </AuthProvider>
   );
 }
 

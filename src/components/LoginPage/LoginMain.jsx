@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const LoginMain = () => {
     const navigate = useNavigate();
-    const {id, setId, password, setPassword, handleIdChange, handlePasswordChange, handleSubmit} = useContext(LoginContext);
+    const {id, setId, password, setPassword, handleIdChange, handlePasswordChange, handleSubmit, error, user} = useContext(LoginContext);
     
 
     return (
@@ -39,11 +39,9 @@ const LoginMain = () => {
                             회원가입
                         </a> 해주세요!</p>
                     </div>
+                    {error && <p className={styles.error_text}>{error}</p>}
                     <button type="submit" className={styles.login_button}>
                         로그인
-                    </button>
-                    <button type="submit" className={styles.login_button2}>
-                        소셜 로그인 추가 예정
                     </button>
                 </form>
             </div>

@@ -71,7 +71,7 @@ const SignUpProvider = ({children}) => {
                 user_email: userEmail
             });
             alert("회원가입 성공!");
-            navigate('/');
+            navigate('/login');
         } catch (error) {
             console.error("회원가입 실패:", error);
             alert("회원가입에 실패했습니다.");
