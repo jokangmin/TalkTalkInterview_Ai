@@ -33,7 +33,7 @@
 | 역할          | 기술 스택 |
 |--------------|-----------------|
 | **Frontend** | React (Vite), javascript, node.js |
-| **Backend**  | Spring Boot, MySQL |
+| **Backend**  | Spring Boot, MySQL, JWT |
 | **API**      | OpenAI GPT API |
 
 ---
