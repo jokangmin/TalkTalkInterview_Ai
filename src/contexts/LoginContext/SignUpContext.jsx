@@ -66,7 +66,7 @@ const SignUpProvider = ({children}) => {
         try {
             await axios.post(`${PATH.SERVER}/api/user/join`, {
                 userId: userId,
-                user_password: userPassword,
+                userPassword: userPassword,
                 user_name: userName,
                 user_email: userEmail
             });
