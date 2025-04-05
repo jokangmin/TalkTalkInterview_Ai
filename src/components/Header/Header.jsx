@@ -29,8 +29,8 @@ const Header = () => {
                         </a>
                     </li>
                     <li className={styles.menu_item}>
-                        <a href="#" onClick={(e) => { e.preventDefault(); navigate('/custom-questions'); }}>
-                            나만의 질문
+                        <a href="#" onClick={(e) => { e.preventDefault(); navigate('/myQuestions'); }}>
+                            나의 질문
                         </a>
                     </li>
 

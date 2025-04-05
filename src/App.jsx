@@ -10,6 +10,8 @@ import LoginPage from './components/LoginPage/LoginMain';
 import SignUpProvider from './contexts/LoginContext/SignUpContext';
 import SignUpPage from './components/LoginPage/SignUpMain';
 import AuthProvider from './contexts/AuthContext';
+import MyQuestionsProvider from './contexts/MyQuestionsContext/MyQuestionsContext';
+import MyQuestionsPage from './components/MyQuestionsPage/MyQuestions';
 
 function App() {
   return (
@@ -54,6 +56,16 @@ function App() {
                 <SignUpProvider>
                   <SignUpPage />
                 </SignUpProvider>
+              } 
+            />
+
+            {/* 나의 질문 페이지 */}
+            <Route 
+              path="/myQuestions" 
+              element={
+                <MyQuestionsProvider>
+                  <MyQuestionsPage />
+                </MyQuestionsProvider>
               } 
             />
 

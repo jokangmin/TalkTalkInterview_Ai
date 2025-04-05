@@ -1,0 +1,52 @@
+.container {
+    padding: 1rem;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* card css */
+.cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    width: 80%;
+    justify-content: center;
+}
+
+.card {
+    background-color: #677797;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    height: 25vh;
+    width: 30%;
+    border-radius: 10px;
+    color: white;
+    cursor: pointer;
+    transition: 400ms;
+}
+
+.question {
+font-size: 1em;
+font-weight: 700;
+}
+
+p.second-text {
+font-size: .7em;
+}
+
+.card:hover {
+transform: scale(1.1, 1.1);
+}
+
+.cards:hover > .card:not(:hover) {
+filter: blur(10px);
+transform: scale(0.9, 0.9);
+}
