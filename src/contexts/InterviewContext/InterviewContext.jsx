@@ -141,6 +141,36 @@ const InterviewProvider = ({children}) => {
         setIsAnswerSubmitted(false);
     };
 
+    // 나의 질문에 저장
+    const handleSaveQuestion = async (questionText, answer, feedbackText) => {
+        try {
+            const token = localStorage.getItem('authToken');
+            const payload = JSON.parse(atob(token.split('.')[1]));
+            const memberId = payload.id; 
+            if (!token || !memberId) {
+                alert("로그인이 필요합니다.");
+                return;
+            }
+
+            await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/user/favorite`, {
+                memberId: memberId,
+                interviewQ: questionText,
+                answer: answer,
+                feedback: feedbackText
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            alert("나의 질문에 저장되었습니다!");
+        } catch (error) {
+            console.error("질문 저장 실패:", error);
+            alert("질문 저장 중 오류가 발생했습니다.");
+        }
+    };
+
     return (
         <InterviewContext.Provider value={{
             question: interviewQuestions[questionIndex],
@@ -152,7 +182,8 @@ const InterviewProvider = ({children}) => {
             handleSubmitAnswer,
             askedQuestions,
             feedbackHistory,
-            answerHistory
+            answerHistory,
+            handleSaveQuestion
         }}>
             {children}
         </InterviewContext.Provider>

@@ -29,7 +29,18 @@ const Header = () => {
                         </a>
                     </li>
                     <li className={styles.menu_item}>
-                        <a href="#" onClick={(e) => { e.preventDefault(); navigate('/myQuestions'); }}>
+                        <a
+                            href="#"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                if (!user) {
+                                    alert('로그인 해주세요!');
+                                    navigate('/login');
+                                    return;
+                                }
+                                navigate('/myQuestions');
+                            }}
+                        >
                             나의 질문
                         </a>
                     </li>

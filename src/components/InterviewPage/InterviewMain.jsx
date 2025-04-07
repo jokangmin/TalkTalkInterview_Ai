@@ -5,7 +5,7 @@ import Header from '../Header/Header';
 
 const InterviewMain = () => {
     const { question, userAnswer, setUserAnswer, answerHistory, feedbackHistory,
-         isAnswerSubmitted, handleSubmitAnswer, askedQuestions } = useContext(InterviewContext);
+         isAnswerSubmitted, handleSubmitAnswer, askedQuestions, handleSaveQuestion } = useContext(InterviewContext);
     
     const [isLoading, setIsLoading] = useState(false); // 로딩 상태 추가
 
@@ -32,6 +32,12 @@ const InterviewMain = () => {
                                 <>
                                     <p><strong>👔 나의 답변 : </strong> {answerHistory[index]}</p>
                                     <p><strong>🤖 AI의 피드백 : </strong> {feedbackHistory[index]}</p>
+                                    <button
+                                        className={styles.saveButton}
+                                        onClick={() => handleSaveQuestion(q, answerHistory[index], feedbackHistory[index])}
+                                    >
+                                        🧡 나의 질문 추가
+                                    </button>
                                 </>
                             )}
                         </div>

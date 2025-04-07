@@ -64,6 +64,18 @@
     color: #555;
 }
 
+.saveButton{
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: #d8dae6;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.saveButton:hover{
+    background-color: #abb3e3;
+}
+
 /* 텍스트 입력 영역 */
 .textarea {
     border: 1px solid #ddd;
