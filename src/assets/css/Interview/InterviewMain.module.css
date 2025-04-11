@@ -31,6 +31,7 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #f9f9f9;
+    margin: 0 auto;
 }
 
 /* 각 질문과 답변 블록 */
@@ -87,11 +88,15 @@
     font-size: 1rem;
     width: 100%;
     max-width: 800px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* 버튼 영역 */
 .buttonarea {
-    align-self: flex-end;
+    justify-content:flex-end;
+    display: flex;
     margin-top: 1rem;
 }
 
@@ -137,6 +142,91 @@
     transition: all 0.475s;
 }
 
+.questionMain{
+    width: 1200px;
+}
+
+/* 🔹 블러 처리된 영역 */
+.blurred {
+    filter: blur(4px);
+    pointer-events: none;
+    user-select: none;
+    transition: filter 0.3s ease;
+}
+
+/* 🔹 카테고리 선택 모달 */
+.categoryModal {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    padding: 2rem;
+}
+
+.modalTitle {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.categoryList {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.categoryButton {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    background-color: #3c5fc9;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.categoryButton:hover {
+    background-color: #809cd7;
+}
+
+.selected {
+    background-color: #823973;
+}
+
+.jobInput {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    width: 80%;
+    max-width: 400px;
+    margin-bottom: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.confirmButton {
+    padding: 0.8rem 2rem;
+    background-color: #823973;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.confirmButton:hover {
+    background-color: #531c48;
+}
+
+
 /* 로딩 메시지 스타일 */
 .loading {
     display: flex;
@@ -158,6 +248,7 @@
     animation: spin 1s linear infinite;
     margin-bottom: 0.5rem;
 }
+
 
 @keyframes spin {
     from { transform: rotate(0deg); }
