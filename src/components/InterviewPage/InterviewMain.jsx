@@ -6,27 +6,10 @@ import Header from '../Header/Header';
 const InterviewMain = () => {
     const {
         question, userAnswer, setUserAnswer, answerHistory, feedbackHistory,
-        isAnswerSubmitted, handleSubmitAnswer, askedQuestions, handleSaveQuestion
+        isAnswerSubmitted, handleSubmitAnswer, askedQuestions, handleSaveQuestion,
+        handleSubmit, handleConfirm, setSelectedCategory, selectedCategory, 
+        setJobTitle, jobTitle, isLoading, isConfirmed
     } = useContext(InterviewContext);
-
-    const [isLoading, setIsLoading] = useState(false);
-    const [selectedCategory, setSelectedCategory] = useState('');
-    const [jobTitle, setJobTitle] = useState('');
-    const [isConfirmed, setIsConfirmed] = useState(false); // 선택 완료 여부
-
-    const handleSubmit = async () => {
-        setIsLoading(true);
-        await handleSubmitAnswer();
-        setIsLoading(false);
-    };
-
-    const handleConfirm = () => {
-        if (selectedCategory && jobTitle.trim() !== '') {
-            setIsConfirmed(true);
-        } else {
-            alert("카테고리와 직무를 모두 입력해주세요.");
-        }
-    };
 
     return (
         <div className={styles.container}>

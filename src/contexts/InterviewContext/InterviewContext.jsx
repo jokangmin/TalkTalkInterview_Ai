@@ -14,6 +14,25 @@ const InterviewProvider = ({children}) => {
     const [answerHistory, setAnswerHistory] = useState([]); //했던 답변 목록
     const apiKey = import.meta.env.VITE_GPT_API_KEY;
 
+    const [isLoading, setIsLoading] = useState(false);
+    const [selectedCategory, setSelectedCategory] = useState('');
+    const [jobTitle, setJobTitle] = useState('');
+    const [isConfirmed, setIsConfirmed] = useState(false); // 선택 완료 여부
+
+    const handleSubmit = async () => {
+        setIsLoading(true);
+        await handleSubmitAnswer();
+        setIsLoading(false);
+    };
+
+    const handleConfirm = () => {
+        if (selectedCategory && jobTitle.trim() !== '') {
+            setIsConfirmed(true);
+        } else {
+            alert("카테고리와 직무를 모두 입력해주세요.");
+        }
+    };
+
     // 질문 목록
     const interviewQuestions = [
         "React의 useState와 useEffect의 차이점을 설명해주세요.",
@@ -183,7 +202,15 @@ const InterviewProvider = ({children}) => {
             askedQuestions,
             feedbackHistory,
             answerHistory,
-            handleSaveQuestion
+            handleSaveQuestion,
+            handleSubmit,
+            handleConfirm,
+            setSelectedCategory,
+            selectedCategory,
+            setJobTitle,
+            jobTitle,
+            isLoading,
+            isConfirmed
         }}>
             {children}
         </InterviewContext.Provider>
