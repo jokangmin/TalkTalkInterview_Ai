@@ -20,7 +20,7 @@ const InterviewMain = () => {
                 <div className={styles.categoryModal}>
                     <h3 className={styles.modalTitle}>면접 유형을 선택해주세요</h3>
                     <div className={styles.categoryList}>
-                        {["기술", "인성", "컬처핏"].map((cat) => (
+                        {["기술 면접", "인성 면접", "컬처핏 면접"].map((cat) => (
                             <button
                                 key={cat}
                                 className={`${styles.categoryButton} ${selectedCategory === cat ? styles.selected : ''}`}
