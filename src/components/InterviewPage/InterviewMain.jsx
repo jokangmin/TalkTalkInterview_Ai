@@ -60,7 +60,7 @@ const InterviewMain = () => {
                                             <p><strong>🤖 AI의 피드백 : </strong> {feedbackHistory[index]}</p>
                                             <button
                                                 className={styles.saveButton}
-                                                onClick={() => handleSaveQuestion(q, answerHistory[index], feedbackHistory[index])}
+                                                onClick={() => handleSaveQuestion(q, answerHistory[index], feedbackHistory[index], selectedCategory, jobTitle)}
                                             >
                                                 🧡 나의 질문 추가
                                             </button>

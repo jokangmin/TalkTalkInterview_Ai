@@ -150,12 +150,16 @@ const InterviewProvider = ({ children }) => {
         setIsAnswerSubmitted(false);
     };
 
-    const handleSaveQuestion = async (questionText, answer, feedbackText) => {
+    const handleSaveQuestion = async (questionText, answer, feedbackText, selectedCategory, jobTitle) => {
         try {
             const token = localStorage.getItem('authToken');
+            if (!token) {
+                alert("로그인이 필요합니다.");
+                return;
+            }
             const payload = JSON.parse(atob(token.split('.')[1]));
             const memberId = payload.id;
-            if (!token || !memberId) {
+            if (!memberId) {
                 alert("로그인이 필요합니다.");
                 return;
             }
@@ -164,7 +168,9 @@ const InterviewProvider = ({ children }) => {
                 memberId,
                 interviewQ: questionText,
                 answer,
-                feedback: feedbackText
+                feedback: feedbackText,
+                category: selectedCategory,
+                jobTitle
             }, {
                 headers: {
                     Authorization: `Bearer ${token}`,
