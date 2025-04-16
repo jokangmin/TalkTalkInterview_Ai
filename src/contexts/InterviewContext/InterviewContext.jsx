@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react';
 import axios from "axios";
+import { PATH } from '../../../scripts/path';
 
 export const InterviewContext = createContext();
 
@@ -151,6 +152,11 @@ const InterviewProvider = ({ children }) => {
     };
 
     const handleSaveQuestion = async (questionText, answer, feedbackText, selectedCategory, jobTitle) => {
+        if (answer.length > 5000) {
+            alert('답변이 너무 깁니다. 5000자 이하로 작성해주세요.');
+            return;
+        }
+
         try {
             const token = localStorage.getItem('authToken');
             if (!token) {
@@ -164,7 +170,7 @@ const InterviewProvider = ({ children }) => {
                 return;
             }
 
-            await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/user/favorite`, {
+            await axios.post(`${PATH.SERVER}/api/user/favorite`, {
                 memberId,
                 interviewQ: questionText,
                 answer,
