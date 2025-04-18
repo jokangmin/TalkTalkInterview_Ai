@@ -187,7 +187,17 @@ const InterviewProvider = ({ children }) => {
             alert("나의 질문에 저장되었습니다!");
         } catch (error) {
             console.error("질문 저장 실패:", error);
-            alert("질문 저장 중 오류가 발생했습니다.");
+            
+            if (error.response && error.response.data && typeof error.response.data === 'string') {
+                // 백엔드에서 RuntimeException 메시지를 String으로 전달하는 경우
+                if (error.response.data.includes("이미 해당 질문이 저장되어 있습니다")) {
+                    alert("⚠️ 이미 저장된 질문입니다.");
+                } else {
+                    alert(`❌ 오류: ${error.response.data}`);
+                }
+            } else {
+                alert("❌ 질문 저장 중 예상치 못한 오류가 발생했습니다.");
+            }
         }
     };
 
