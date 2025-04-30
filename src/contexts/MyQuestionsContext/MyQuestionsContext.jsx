@@ -1,16 +1,13 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { PATH } from '../../../scripts/path';
-import { AuthContext } from '../AuthContext';
 
 export const MyQuestionsContext = createContext();
 
 const MyQuestionsProvider = ({ children }) => {
     const [myQuestions, setMyQuestions] = useState([]);
-    //로그인 정보를 가져오는 것!
-    const user = useContext(AuthContext);
 
-    //페이지네이션 부분 ********
+    // 페이지네이션 상태
     const [selectedCard, setSelectedCard] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6;
@@ -24,16 +21,12 @@ const MyQuestionsProvider = ({ children }) => {
     const handleCloseModal = () => setSelectedCard(null);
     const handleNext = () => currentPage < totalPages && setCurrentPage(currentPage + 1);
     const handlePrev = () => currentPage > 1 && setCurrentPage(currentPage - 1);
-    //페이지네이션 부분 끝 ********
 
     const fetchMyQuestions = async () => {
-        const userId = user.userId;
-
         try {
-            const response = await axios.get(`${PATH.SERVER}/api/user/myQuestions`,{
-                params: { userId: userId }
+            const response = await axios.get(`${PATH.SERVER}/api/user/myQuestions`, {
+                withCredentials: true
             });
-
             setMyQuestions(response.data);
         } catch (error) {
             console.error('질문 가져오기 실패:', error);
