@@ -24,10 +24,13 @@ const MyQuestionsProvider = ({ children }) => {
 
     const fetchMyQuestions = async () => {
         try {
+            const token = localStorage.getItem('authToken');
             const response = await axios.get(`${PATH.SERVER}/api/user/myQuestions`, {
-                withCredentials: true
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
             });
-            setMyQuestions(response.data);
+            setMyQuestions(response.data.reverse());
         } catch (error) {
             console.error('질문 가져오기 실패:', error);
             alert('질문 가져오기 실패');

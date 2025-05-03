@@ -24,7 +24,8 @@ const MyQuestions = () => {
             <div className={styles.cards}>
                 {currentItems.map((card, index) => (
                     <div key={index} className={styles.card} onClick={() => handleCardClick(card)}>
-                        <p className={styles.question}>{card.question}</p>
+                        <p className={styles.question}>{card.interviewQ}</p>
+                        <p className={styles.category}>{card.jobTitle}</p>
                         <p className={styles.category}>{card.category}</p>
                     </div>
                 ))}
@@ -39,7 +40,7 @@ const MyQuestions = () => {
             {selectedCard && (
                 <div className={styles.modalOverlay} onClick={handleCloseModal}>
                     <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-                        <h3 className={styles.modalQuestion}>{selectedCard.question}</h3>
+                        <h3 className={styles.modalQuestion}>{selectedCard.interviewQ}</h3>
                         <p><strong>👔 나의 답변:</strong> {selectedCard.answer}</p>
                         <p><strong>🤖 AI 피드백:</strong> {selectedCard.feedback}</p>
                         <button className={styles.closeButton} onClick={handleCloseModal}>닫기</button>
