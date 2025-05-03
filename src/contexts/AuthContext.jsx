@@ -20,8 +20,6 @@ const AuthProvider = ({ children }) => {
     // ✅ 로그인 함수
     const login = async (id, password) => {
         try {
-            console.log("👉 요청 데이터: ", { userId: id, userPassword: password });
-
             const response = await axios.post(`${PATH.SERVER}/api/user/login`, {
                 userId: id,
                 userPassword: password
@@ -40,8 +38,8 @@ const AuthProvider = ({ children }) => {
             setUser(userData); // 상태 업데이트
             return true;
         } catch (error) {
-            console.error("❌ 로그인 오류: ", error);
-            throw error.response?.data?.error || error.message;
+            console.warn("❌ 로그인 실패:", error.response?.data?.error || "서버 오류 발생");
+            throw new Error(error.response?.data?.error || "로그인에 실패했습니다.");
         }
     };
 
