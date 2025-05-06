@@ -91,6 +91,21 @@ transform: scale(0.9, 0.9);
     cursor: pointer;
 }
 
+.deleteButton {
+    margin-top: 1.5rem;
+    background-color: #a95f50;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.deleteButton:hover {
+    background-color: #542118;
+}
+
 .closeButton:hover {
     background-color: #505f78;
 }

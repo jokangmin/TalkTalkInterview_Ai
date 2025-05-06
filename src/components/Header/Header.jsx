@@ -54,7 +54,7 @@ const Header = () => {
                                 </span>
                             </li>
                             <li className={styles.menu_item}>
-                                <a href="#" onClick={(e) => { e.preventDefault(); logout(); }}>
+                                <a href="#" onClick={(e) => { e.preventDefault(); logout(); alert('로그아웃되었습니다'); navigate('/');}}>
                                     로그아웃
                                 </a>
                             </li>

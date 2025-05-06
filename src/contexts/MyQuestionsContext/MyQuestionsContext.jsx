@@ -37,6 +37,29 @@ const MyQuestionsProvider = ({ children }) => {
         }
     };
 
+    //질문 삭제 부분
+    const handleDeleteQuestion = async (id) => {
+        if (!window.confirm("정말로 이 질문을 삭제하시겠습니까?")) return;
+    
+        try {
+            const token = localStorage.getItem('authToken');
+            await axios.delete(`${PATH.SERVER}/api/user/myQuestions/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            // 삭제 후 목록 갱신
+            setMyQuestions((prev) => prev.filter((q) => q.id !== id));
+            alert("질문이 삭제되었습니다.");
+            handleCloseModal();
+        } catch (error) {
+            console.error('질문 삭제 실패:', error);
+            alert('질문 삭제에 실패했습니다.');
+        }
+    };
+    
+
+
     useEffect(() => {
         fetchMyQuestions();
     }, []);
@@ -54,7 +77,8 @@ const MyQuestionsProvider = ({ children }) => {
             handleCardClick,
             handleCloseModal,
             handleNext,
-            handlePrev
+            handlePrev,
+            handleDeleteQuestion
         }}>
             {children}
         </MyQuestionsContext.Provider>

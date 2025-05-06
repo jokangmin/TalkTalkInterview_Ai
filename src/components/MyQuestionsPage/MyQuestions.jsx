@@ -12,7 +12,8 @@ const MyQuestions = () => {
         currentPage,
         totalPages,
         handleNext,
-        handlePrev
+        handlePrev,
+        handleDeleteQuestion
     } = useContext(MyQuestionsContext);
     
 
@@ -43,7 +44,10 @@ const MyQuestions = () => {
                         <h3 className={styles.modalQuestion}>{selectedCard.interviewQ}</h3>
                         <p><strong>👔 나의 답변:</strong> {selectedCard.answer}</p>
                         <p><strong>🤖 AI 피드백:</strong> {selectedCard.feedback}</p>
-                        <button className={styles.closeButton} onClick={handleCloseModal}>닫기</button>
+                        <div className={styles.buttonGroup}>
+                            <button className={styles.deleteButton} onClick={() => handleDeleteQuestion(selectedCard.id)}>삭제</button>
+                            <button className={styles.closeButton} onClick={handleCloseModal}>닫기</button>
+                        </div>
                     </div>
                 </div>
             )}
