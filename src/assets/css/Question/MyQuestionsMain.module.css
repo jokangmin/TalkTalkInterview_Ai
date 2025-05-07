@@ -137,3 +137,19 @@ transform: scale(0.9, 0.9);
     font-weight: bold;
     color: #333;
 }
+
+@media screen and (max-width: 768px) {
+    /* 전체 컨테이너 정렬 */
+    .container {
+        padding: 0rem;
+        margin-top: 80px;
+    }
+
+    .card {
+        width: 100%;
+    }
+
+    .pagination {
+        margin-bottom: 2rem;
+    }
+}

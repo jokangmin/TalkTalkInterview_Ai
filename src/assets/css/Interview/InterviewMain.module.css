@@ -304,7 +304,7 @@
         font-size: 1rem;
         padding: 0.5rem;
         height: 8vh;
-        width: 90%;
+        max-width: 85vw;
         margin-top: 0.5rem;
     }
 
@@ -317,7 +317,7 @@
 
     /* 버튼 스타일 */
     .button {
-        width: 95%;
+        width: 90vw;
         font-size: 1rem;
         margin: 0 auto;
     }
@@ -331,5 +331,10 @@
     .spinner {
         width: 25px;
         height: 25px;
+    }
+
+    /* 질문 및 답변 영역 */
+    .historySection {
+        max-width: 85vw;
     }
 }
