@@ -111,12 +111,24 @@ const InterviewProvider = ({ children }) => {
                 {
                     model: "gpt-3.5-turbo",
                     messages: [
-                        { role: "system", content: "당신은 면접관입니다. 사용자의 답변에 대한 피드백을 조건에 맞게 작성해주세요." },
-                        { role: "system", content: "피드백의 초반은 질문에 대해 사용자의 답변이 어떠한 지 분석해 피드백\n중후반은 사용자의 답변에서 태도와 말투를 분석해서 피드백\n문단별로 줄바꿈 하며 출력한다." },
-                        { role: "user", content: `1. 면접관의 질문: ${currentQuestion}\n2. 사용자의 답변: ${userAnswer}\n3. 피드백 어조: 차분하고 지적인 말투\n4. 피드백 목적: 사용자가 면접에 대한 피드백을 얻기 위함` }
+                        {
+                            role: "system",
+                            content: `당신은 차분하고 지적인 면접관입니다. 사용자의 답변에 대해 피드백을 줄 때 다음 기준을 따르세요:
+    1. 첫 문단에서는 질문에 대한 답변의 **내용의 충실도, 구체성, 적절성**을 분석해 피드백하세요.
+    2. 두 번째 문단에서는 사용자의 **말투, 태도, 논리 전개 방식**을 바탕으로 커뮤니케이션 능력에 대한 피드백을 주세요.
+    3. 각 문단은 **줄바꿈**을 하여 나누고, **구체적인 예시나 개선 포인트**를 포함하세요.
+    4. 절대로 칭찬만 반복하지 말고, **도움이 되는 방향으로 피드백**을 구성하세요.
+    `
+                        },
+                        {
+                            role: "user",
+                            content: `면접 질문: ${currentQuestion}\n사용자 답변: ${userAnswer}`
+                        }
                     ],
                     max_tokens: 1500,
-                    temperature: 0.8
+                    temperature: 0.6,
+                    top_p: 0.9,
+                    presence_penalty: 0.6
                 },
                 {
                     headers: {
