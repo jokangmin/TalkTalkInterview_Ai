@@ -73,7 +73,7 @@ const InterviewMain = () => {
                         {isLoading && (
                             <div className={styles.loading}>
                                 <div className={styles.spinner}></div>
-                                <p>AI가 피드백을 작성 중입니다...</p>
+                                <p>질문 생성 및 피드백 중입니다...</p>
                             </div>
                         )}
                     </div>
