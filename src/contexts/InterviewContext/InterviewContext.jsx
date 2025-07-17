@@ -20,6 +20,13 @@ const InterviewProvider = ({ children }) => {
     const [selectedCategory, setSelectedCategory] = useState('');
     const [jobTitle, setJobTitle] = useState('');
     const [isConfirmed, setIsConfirmed] = useState(false);
+    // ✅ 면접이 완전히 끝났는지 여부를 나타내는 새로운 상태
+    const [isInterviewFinished, setIsInterviewFinished] = useState(false); 
+
+    // ✅ 초기 상태를 저장하여 '다시 하기' 시 활용
+    const [initialCategory, setInitialCategory] = useState('');
+    const [initialJobTitle, setInitialJobTitle] = useState('');
+
 
     const handleSubmit = async () => {
         setIsLoading(true);
@@ -30,6 +37,9 @@ const InterviewProvider = ({ children }) => {
     const handleConfirm = async () => {
         if (selectedCategory && jobTitle.trim() !== '') {
             setIsConfirmed(true);
+            // ✅ 초기 값 저장
+            setInitialCategory(selectedCategory);
+            setInitialJobTitle(jobTitle);
             await fetchInterviewQuestions(selectedCategory, jobTitle); // 질문 생성
         } else {
             alert("카테고리와 직무를 모두 입력해주세요.");
@@ -41,13 +51,13 @@ const InterviewProvider = ({ children }) => {
             setIsLoading(true);
             let prompt = "";
             if(category === "기술 면접"){
-                prompt = `당신은 면접 질문을 만들어주는 시스템입니다. 카테고리는 "${category}", 직무는 "${job}"입니다. 이 조건에 맞는 직무에 맞는 전문성 있는 면접 질문(사용 기술 등) 10개를 bullet 없이 순수한 질문 문장만 배열 형식 없이 줄 단위로 나열해 주세요.`;
+                prompt = `당신은 면접 질문을 만들어주는 시스템입니다. 카테고리는 "${category}", 직무는 "${job}"입니다. 이 조건에 맞는 직무에 맞는 전문성 있는 면접 질문(사용 기술 등) 10개를 어떤 불렛(bullet)이나 숫자 목록(numbered list) 없이, 순수한 질문 문장만 각 질문 당 한 줄로 나열해 주세요.`;
             }
             if(category === "인성 면접"){
-                prompt = `당신은 면접 질문을 만들어주는 시스템입니다. 카테고리는 "${category}", 직무는 "${job}"입니다. 이 조건에 맞는 직무에 맞는 인성과 상황 판단 능력을 확인하기위한 질문 10개를 bullet 없이 순수한 질문 문장만 배열 형식 없이 줄 단위로 나열해 주세요.`;
+                prompt = `당신은 면접 질문을 만들어주는 시스템입니다. 카테고리는 "${category}", 직무는 "${job}"입니다. 이 조건에 맞는 직무에 맞는 인성과 상황 판단 능력을 확인하기위한 질문 10개를 어떤 불렛(bullet)이나 숫자 목록(numbered list) 없이, 순수한 질문 문장만 각 질문 당 한 줄로 나열해 주세요.`;
             }
             if(category === "컬처핏 면접"){
-                prompt = `당신은 면접 질문을 만들어주는 시스템입니다. 카테고리는 "${category}", 직무는 "${job}"입니다. 이 조건에 맞는 직무와 회사에 맞는 컬쳐핏 적성 면접 질문 10개를 bullet 없이 순수한 질문 문장만 배열 형식 없이 줄 단위로 나열해 주세요.`;
+                prompt = `당신은 면접 질문을 만들어주는 시스템입니다. 카테고리는 "${category}", 직무는 "${job}"입니다. 이 조건에 맞는 직무와 회사에 맞는 컬쳐핏 적성 면접 질문 10개를 어떤 불렛(bullet)이나 숫자 목록(numbered list) 없이, 순수한 질문 문장만 각 질문 당 한 줄로 나열해 주세요.`;
             }
             
             const response = await axios.post(
@@ -91,7 +101,12 @@ const InterviewProvider = ({ children }) => {
             setIsAnswerSubmitted(true);
 
             await handleFeedback(userAnswer);
-            handleNextQuestion();
+
+            if (askedQuestions.length >= interviewQuestions.length -1) {
+                setIsInterviewFinished(true);
+            } else {
+                handleNextQuestion();
+            }
         } else {
             alert("답변을 입력해주세요.");
         }
@@ -149,22 +164,30 @@ const InterviewProvider = ({ children }) => {
 
     const getRandomQuestion = (questions, asked) => {
         const remaining = questions.filter(q => !asked.includes(q));
-        if (remaining.length === 0) return questions[Math.floor(Math.random() * questions.length)];
+        if (remaining.length === 0) {
+            return null; // 남은 질문이 없으면 null 반환
+        }
         return remaining[Math.floor(Math.random() * remaining.length)];
     };
 
     const handleNextQuestion = () => {
         const next = getRandomQuestion(interviewQuestions, askedQuestions);
+        
+        if (!next) { // 더 이상 질문이 없으면 면접 종료 상태로 설정
+            setIsInterviewFinished(true);
+            return;
+        }
+
         setQuestionIndex(interviewQuestions.indexOf(next));
         setAskedQuestions(prev => [...prev, next]);
         setUserAnswer("");
-        setAnswer("");
-        setFeedback("");
+        setAnswer(""); // 현재 답변 초기화
+        setFeedback(""); // 현재 피드백 초기화
         setIsAnswerSubmitted(false);
     };
 
-    const handleSaveQuestion = async (questionText, answer, feedbackText, selectedCategory, jobTitle) => {
-        if (answer.length > 5000) {
+    const handleSaveQuestion = async (questionText, answerToSave, feedbackTextToSave, selectedCategory, jobTitle) => {
+        if (answerToSave.length > 5000) {
             alert('답변이 너무 깁니다. 5000자 이하로 작성해주세요.');
             return;
         }
@@ -185,8 +208,8 @@ const InterviewProvider = ({ children }) => {
             await axios.post(`${PATH.SERVER}/api/user/favorite`, {
                 memberId,
                 interviewQ: questionText,
-                answer,
-                feedback: feedbackText,
+                answer: answerToSave,
+                feedback: feedbackTextToSave,
                 category: selectedCategory,
                 jobTitle
             }, {
@@ -201,7 +224,6 @@ const InterviewProvider = ({ children }) => {
             console.error("질문 저장 실패:", error);
             
             if (error.response && error.response.data && typeof error.response.data === 'string') {
-                // 백엔드에서 RuntimeException 메시지를 String으로 전달하는 경우
                 if (error.response.data.includes("이미 해당 질문이 저장되어 있습니다")) {
                     alert("⚠️ 이미 저장된 질문입니다.");
                 } else {
@@ -213,13 +235,33 @@ const InterviewProvider = ({ children }) => {
         }
     };
 
+    // ✅ 면접 재시작 핸들러
+    const handleRestartInterview = async () => {
+        setIsLoading(true);
+        // 상태 초기화
+        setQuestionIndex(0);
+        setInterviewQuestions([]);
+        setUserAnswer("");
+        setAnswer("");
+        setFeedback("");
+        setIsAnswerSubmitted(false);
+        setAskedQuestions([]);
+        setFeedbackHistory([]);
+        setAnswerHistory([]);
+        setIsInterviewFinished(false);
+        // 초기 설정된 카테고리와 직무로 다시 질문 생성
+        await fetchInterviewQuestions(initialCategory, initialJobTitle);
+        setIsLoading(false);
+    };
+    
+
     return (
         <InterviewContext.Provider value={{
             question: interviewQuestions[questionIndex] || "",
             userAnswer,
             setUserAnswer,
-            answer,
-            feedback,
+            answer, // 현재 답변
+            feedback, // 현재 피드백
             isAnswerSubmitted,
             handleSubmitAnswer,
             askedQuestions,
@@ -233,7 +275,10 @@ const InterviewProvider = ({ children }) => {
             setJobTitle,
             jobTitle,
             isLoading,
-            isConfirmed
+            isConfirmed,
+            isInterviewFinished, // ✅ 새로운 상태 전달
+            handleRestartInterview, // ✅ 새로운 핸들러 전달
+            questionIndex
         }}>
             {children}
         </InterviewContext.Provider>
